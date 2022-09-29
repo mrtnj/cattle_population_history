@@ -23,13 +23,14 @@ plink \
   --out cattle_population_history/plink/swedish_cattle_biallelic_snps 
 
 cp cattle_population_history/outputs/snp_map_cM.map \
-  cattle_population_history/pllink/swedish_cattle_biallelic_snps.map
+  cattle_population_history/plink/swedish_cattle_biallelic_snps.map
 
 
 for BREED in srb rodkulla bohuskulla fjall fjallnara vaneko; do
 
   plink \
     --cow \
+    --mac 1 \
     --file cattle_population_history/plink/swedish_cattle_biallelic_snps \
     --exclude cattle_population_history/outputs/snps_to_remove.txt \
     --keep metadata/breed_files/${BREED}.txt \
