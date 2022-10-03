@@ -1,10 +1,6 @@
 
 ## Create breed files for preparing Plink files
 
-## TODO
-## * read samples
-## * make breed nammes that don't need special characters
-## * write out files for plink
 
 library(dplyr)
 library(readxl)
