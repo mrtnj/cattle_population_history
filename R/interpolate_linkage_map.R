@@ -33,9 +33,36 @@ map_cM <- interpolate_genome(map,
 
 ## Identify variants to be removed outside the linkage map
 
-to_remove <- map_cM$id[is.na(map_cM$cM)]
+to_remove_ends <- map_cM$id[is.na(map_cM$cM)]
 
 map_cM$cM[is.na(map_cM$cM)] <- 0
+
+
+## Identify variants to be removed because they overlap with other
+## variants on the same genetic position
+
+n_snps <- nrow(map_cM)
+previous_cM <- 0
+tol <- 1e-8
+
+is_duplicated <- logical(n_snps)
+
+for (snp_ix in 1:n_snps) {
+  
+  current_cM <- map_cM$cM[snp_ix]
+  
+  if (previous_cM > current_cM - tol &
+      previous_cM < current_cM + tol) {
+    ## If current marker is in same position as previous
+    is_duplicated[snp_ix] <- TRUE
+  }
+  
+  previous_cM <- current_cM
+}
+
+
+to_remove <- unique(c(to_remove_ends,
+                      map_cM$id[is_duplicated]))
 
 
 ## Write out map and variant IDs to be removed
