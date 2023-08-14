@@ -81,6 +81,11 @@ plot200 <- plot_whole +
 
 
 
+write.csv(combined,
+          file = "population_histories/published_histories.csv",
+          quote = FALSE,
+          row.names = FALSE)
+
 pdf("figures/published_histories.pdf",
     height = 5)
 print(plot_whole / plot200)
