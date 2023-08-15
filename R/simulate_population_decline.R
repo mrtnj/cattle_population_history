@@ -15,7 +15,9 @@ founders <- simulate_founder_genome(genome_table = cattle_genome_table,
                                     seg_sites_per_bp = 30,
                                     historical_Ne = NULL,
                                     historical_Ne_time = NULL,
-                                    split = NULL)
+                                    split = NULL,
+                                    parallel = TRUE,
+                                    n_cores = parallel::detectCores())
 
 
 simparam <- SimParam$new(founders)
