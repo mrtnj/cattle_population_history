@@ -20,7 +20,7 @@ for RUN in fjall_chip fjall_seq holstein_chip; do
 
     Rscript R/simulate_population_history.R \
       population_histories/gone_${RUN}.csv \
-      simulations/decline/replicate$REP/
+      simulations/gone_posterior/$RUN/replicate$REP/
     
   done
     
