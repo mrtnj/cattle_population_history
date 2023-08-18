@@ -12,7 +12,7 @@ if [ ! -d simulations/gone_posterior ]; then
 fi
 
 
-for RUN in fjall_chip fjall_seq holstein_chip; do
+for RUN in fjall_chip holstein_chip fjall_seq; do
 
   for REP in 1; do
 
@@ -20,7 +20,7 @@ for RUN in fjall_chip fjall_seq holstein_chip; do
 
     Rscript R/simulate_population_history.R \
       population_histories/gone_${RUN}.csv \
-      simulations/gone_posterior/$RUN/replicate$REP/
+      simulations/gone_posterior/$RUN/replicate$REP/ 
     
   done
     

@@ -49,7 +49,7 @@ geno <- pullSegSiteGeno(generations[[length(generations)]],
 saveRDS(generations,
         file = paste(out_path, "/generations.Rds", sep = ""))
 
-saveRDS(generations,
+saveRDS(geno,
         file = paste(out_path, "/geno.Rds", sep = ""))
 
 saveRDS(simparam,
