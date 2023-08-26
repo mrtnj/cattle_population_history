@@ -12,7 +12,7 @@ if [ ! -d simulations/gone_posterior ]; then
 fi
 
 
-for RUN in holstein_chip fjall_seq; do ##fjall_chip
+for RUN in fjall_seq; do ##fjall_chip holstein_chip
 
   for REP in 1; do
 

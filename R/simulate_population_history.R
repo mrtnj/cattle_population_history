@@ -25,7 +25,7 @@ founders <- simulate_founder_genome(genome_table = cattle_genome_table,
                                     historical_Ne_time = NULL,
                                     split = NULL,
                                     parallel = TRUE,
-                                    n_cores = parallel::detectCores())
+                                    n_cores = 6)
 
 
 
