@@ -1,18 +1,34 @@
 
-## Create fake data of a population with one decline
+## Create fake data 
 
 set -eu
-
-if [ ! -d simulations/decline ]; then
-  mkdir simulations/decline
-fi
 
 
 for REP in {1..10}; do
 
-  mkidr simulations/decline/replicate$REP
+  mkdir -p simulations/decline/replicate$REP
 
-  Rscript R/simulate_population_decline.R \
+  python python/simulate_decline.py \
     simulations/decline/replicate$REP/
+    
+done
+
+
+for REP in {1..10}; do
+
+  mkdir -p simulations/recovery/replicate$REP
+
+  python python/simulate_recovery.py \
+    simulations/recovery/replicate$REP/
+    
+done
+
+
+for REP in {1..10}; do
+
+  mkdir -p simulations/macleod/replicate$REP
+
+  python python/simulate_macleod.py \
+    simulations/macleod/replicate$REP/
     
 done

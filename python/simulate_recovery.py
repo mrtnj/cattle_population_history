@@ -3,6 +3,7 @@ import sys
 import pandas as pd
 import msprime
 
+
 out_path = sys.argv[1]
 
 
@@ -14,6 +15,11 @@ cattle_genome_table = pd.read_csv(
 
 demography = msprime.Demography()
 demography.add_population(name = "pop", initial_size = 100)
+demography.add_population_parameters_change(
+    time = 20,
+    population = "pop",
+    initial_size = 50
+)
 demography.add_population_parameters_change(
     time = 50,
     population = "pop",
