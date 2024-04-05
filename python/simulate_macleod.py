@@ -17,7 +17,10 @@ cattle_genome_table = pd.read_csv(
 
 macleod = pd.read_csv("population_histories/macleod2013.csv")
 history = macleod[::-1].reset_index()
-history.loc[:,"generations_ago"] = np.cumsum(history["number_of_generations"]) - 3
+history.loc[:,"generations_ago"] = np.cumsum(history["number_of_generations"])
+
+history["generations_ago"] = history["generations_ago"].shift(1)
+history.loc[0, "generations_ago"] = 0
 
 
 demography = msprime.Demography()
@@ -31,7 +34,7 @@ for change_ix in range(1, len(history)):
   )
 
 
-for chr_ix in range(len(cattle_genome_table):
+for chr_ix in range(len(cattle_genome_table)):
   rec_rate = cattle_genome_table.genetic_length[chr_ix]/100/cattle_genome_table.length[chr_ix]
   ts = msprime.sim_ancestry(
     samples = 20,
