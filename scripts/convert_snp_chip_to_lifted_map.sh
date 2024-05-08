@@ -16,6 +16,7 @@ for BREED in srb skb rodkulla bohuskulla fjall fjallnara vaneko ringamala holste
   plink \
     --cow \
     --mac 1 \
+    --chr 1-29 \
     --file plink/snp_chip/swedish_cattle_snp_chip_lifted \
     --exclude outputs/snps_to_remove_snp_chip.txt \
     --keep metadata/snp_chip_breed_files/${BREED}.txt \
