@@ -3,7 +3,9 @@
 ## Combine files from simulations
 
 
-for FOLDER in simulations/decline/* simulations/recovery/* simulations/macleod*; do
+for FOLDER in simulations/decline/replicate*/ \
+  simulations/recovery/replicate*/ \
+  simulations/macleod/replicate*/; do
   grep -E "##fileformat|##source|##FILTER" \
     $FOLDER/chr1.vcf > \
     $FOLDER/header1.txt
