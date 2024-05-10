@@ -10,7 +10,7 @@ mkdir -p gone/simulations_macleod
 for REP in {1..10}; do
 
   bash scripts/gone_wrapper.sh \
-    simulations/decline/replicate$REP/genotypes \
+    simulations/decline/replicate$REP/genotypes100k \
     gone/simulations_decline/replicate$REP
 
 done
@@ -19,7 +19,7 @@ done
 for REP in {1..10}; do
 
   bash scripts/gone_wrapper.sh \
-    simulations/recovery/replicate$REP/genotypes \
+    simulations/recovery/replicate$REP/genotypes100k \
     gone/simulations_recovery/replicate$REP
 
 done
@@ -28,7 +28,7 @@ done
 for REP in {1..10}; do
 
   bash scripts/gone_wrapper.sh \
-    simulations/macleod/replicate$REP/genotypes \
+    simulations/macleod/replicate$REP/genotypes100k \
     gone/simulations_macleod/replicate$REP
 
 done

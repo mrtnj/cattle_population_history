@@ -29,4 +29,12 @@ for FOLDER in simulations/decline/replicate*/ \
     --cow \
     --recode \
     --out $FOLDER/genotypes
+    
+  plink \
+    --vcf $FOLDER/genotypes.vcf \
+    --biallelic-only \
+    --thin-count 100000 \
+    --cow \
+    --recode \
+    --out $FOLDER/genotypes100k
 done
