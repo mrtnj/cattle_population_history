@@ -1,0 +1,12 @@
+run, breed, breed_pretty, colour
+chip, bohuskulla, Bohus Polled, #d1e5f0
+chip, fjall, Fjäll, #2166ac
+chip, fjallnara, Fjällnära, #67a9cf
+chip, rodkulla, Red Polled, #d6604d
+chip, ringamalako, Ringamåla, #f4a582
+chip, vaneko, Väne, #fddbc7
+chip, srb, Swedish Red, #b2182b
+chip, skb, SKB, purple
+chip, holstein, Swedish Holstein-Friesian, "#151515"
+seq, holstein, Holstein 1000 Bulls, "#151515"
+seq, jersey, Jersey 1000 Bulls, "#fec260"
