@@ -1,27 +1,26 @@
 
-## Create fake data of a population with one decline
+## Simulate data for posterior checks
 
 set -eu
 
-if [ ! -d simulations ]; then
-  mkdir simulations
-fi
 
-if [ ! -d simulations/gone_posterior ]; then
-  mkdir simulations/gone_posterior
-fi
+HISTORIES=(gone_fjall_chip gone_holstein_chip gone_rodkulla_chip \
+  gone_holstein_seq gone_jersey_seq gone_srb_chip)
+N_SAMPLES=(23 24 18 146 77 25)
 
 
-for RUN in fjall_seq; do ##fjall_chip holstein_chip
+for IX in {0..5}; do
 
-  for REP in 1; do
+  for REP in {1..10}; do
 
-    mkdir -p simulations/gone_posterior/$RUN/replicate$REP
+    mkdir -p simulations/gone_posterior/${HISTORIES[$IX]}/replicate$REP
 
-    Rscript R/simulate_population_history.R \
-      population_histories/gone_${RUN}.csv \
-      simulations/gone_posterior/$RUN/replicate$REP/ 
-    
+    python python/simulate_posterior.py \
+      population_histories/${HISTORIES[$IX]}.csv \
+      ${N_SAMPLES[$IX]} \
+      simulations/gone_posterior/${HISTORIES[$IX]}/replicate$REP
+      
   done
     
 done
+

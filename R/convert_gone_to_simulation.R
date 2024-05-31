@@ -10,9 +10,9 @@ library(tibble)
 source("R/helper_functions.R")
 
 
-gone_seq <- read_gone_results("gone/sequence/", "fjall", "seq")
+gone_seq <- read_gone_results("gone/sequence/", c("holstein", "jersey"), "seq")
 
-gone_chip <- read_gone_results("gone/snp_chip/", c("fjall", "holstein"), "chip")
+gone_chip <- read_gone_results("gone/snp_chip/", c("srb", "fjall", "holstein", "rodkulla"), "chip")
 
 
 gone <- rbind(gone_seq, gone_chip)

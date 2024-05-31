@@ -3,6 +3,14 @@
 
 import pandas as pd
 import msprime
+import sys
+
+
+
+population_history_file = sys.argv[1]
+n_ind = int(sys.argv[2])
+out_path = sys.argv[3]
+
 
 
 cattle_genome_table = pd.read_csv(
@@ -10,7 +18,7 @@ cattle_genome_table = pd.read_csv(
     delimiter = "\t"
 )
 
-history = pd.read_csv("population_histories/gone_fjall_chip.csv")
+history = pd.read_csv(population_history_file)
 
 
 demography = msprime.Demography()
@@ -27,7 +35,7 @@ for change_ix in range(1, len(history)):
 for chr_ix in range(len(cattle_genome_table)):
     rec_rate = cattle_genome_table.genetic_length[chr_ix]/100/cattle_genome_table.length[chr_ix]
     ts = msprime.sim_ancestry(
-      samples = 20,
+      samples = n_ind,
       recombination_rate = rec_rate,
       sequence_length = cattle_genome_table.length[chr_ix],
       demography = demography,
@@ -40,14 +48,6 @@ for chr_ix in range(len(cattle_genome_table)):
     )
     n_ind = int(ts.num_samples / 2)
     ids = [f"ind{i}" for i in range(n_ind)]
-    vcf_file = open("simulations/msprime_fjall/replicate1/" + cattle_genome_table.chr[chr_ix] + ".vcf", "w")
+    vcf_file = open(out_path + "/" + cattle_genome_table.chr[chr_ix] + ".vcf", "w")
     ts_mutated.write_vcf(vcf_file, contig_id = cattle_genome_table.chr[chr_ix], individual_names = ids)
 
-
-## Save haplotype matrix
-# import numpy
-# numpy.savetxt(
-#     "simulations/msprime_decline/chr1.txt",
-#     ts_mutated.genotype_matrix(),
-#     fmt = "%1d"
-# )
