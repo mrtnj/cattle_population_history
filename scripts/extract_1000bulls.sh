@@ -40,7 +40,7 @@ plink \
   --chr 1-29 \
   --biallelic-only strict \
   --snps-only \
-  --vcf vcf/holstein.vcf.gz \
+  --vcf vcf/holstein_filtered_excluded.vcf.gz \
   --recode \
   --maf 0.000001 \
   --out plink/sequence/holstein
@@ -51,7 +51,7 @@ plink \
   --chr 1-29 \
   --biallelic-only strict \
   --snps-only \
-  --vcf vcf/jersey.vcf.gz \
+  --vcf vcf/jersey_filtered_excluded.vcf.gz \
   --recode \
   --maf 0.000001 \
   --out plink/sequence/jersey
