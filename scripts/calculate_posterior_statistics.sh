@@ -38,7 +38,9 @@ for RUN in gone_holstein_seq gone_jersey_seq; do
       --out model_checks/${RUN}_replicate$REP \
       --freq \
       --het \
-      --homozyg
+      --homozyg \
+      --homozyg-window-het 3 \
+      --homozyg-window-missing 10 
       
   done
     
@@ -56,7 +58,9 @@ for BREED in holstein jersey fjall rodkulla; do
     --out model_checks/${BREED}_seq \
     --freq \
     --het \
-    --homozyg
+    --homozyg \
+    --homozyg-window-het 3 \
+    --homozyg-window-missing 10 
     
 done
 
