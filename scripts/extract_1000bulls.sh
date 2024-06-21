@@ -22,6 +22,18 @@ bcftools concat vcf/jersey_chr{1..29}.vcf.gz -Oz -o vcf/jersey.vcf.gz
 bcftools concat vcf/holstein_chr{1..29}.vcf.gz -Oz -o vcf/holstein.vcf.gz
 
 
+gatk IndexFeatureFile -I vcf/holstein.vcf.gz
+gatk IndexFeatureFile -I vcf/jersey.vcf.gz
+
+gatk SelectVariants \
+-V vcf/holstein.vcf.gz \
+--exclude-filtered \
+-O vcf/holstein_filtered_excluded.vcf.gz
+
+gatk SelectVariants \
+-V vcf/jersey.vcf.gz \
+--exclude-filtered \
+-O vcf/jersey_filtered_excluded.vcf.gz
 
 plink \
   --cow \
