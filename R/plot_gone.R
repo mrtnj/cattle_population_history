@@ -105,6 +105,8 @@ plot_hol_comparison <- ggplot() +
             data = filter(gone,
                           breed == "holstein" &
                             Generation < 200)) +
+  guides(colour = guide_legend(nrow = 2),
+         linetype = guide_legend(nrow = 2)) + 
   theme_bw() +
   theme(panel.grid = element_blank(),
         legend.position = "bottom",
@@ -153,21 +155,21 @@ dev.off()
 ## Barplot of final Ne
 
 
-plot_final_chip <- ggplot() +
-  geom_bar(aes(x = breed_pretty, y = Geometric_mean, fill = breed_pretty),
-           data = filter(gone_chip_colour, Generation == 1),
-           stat = "identity") +
-  geom_text(aes(x = breed_pretty, y = Geometric_mean + 20,
-                label = round(Geometric_mean)),
-            data = filter(gone_chip_colour, Generation == 1)) +
-  scale_fill_manual(values = gone_chip_colour$colour[!gone_chip_colour$breed %in% c("fjallnara", "bohuskulla")],
-                    limits = gone_chip_colour$breed_pretty[!gone_chip_colour$breed %in% c("fjallnara", "bohuskulla")]) +
-  theme_bw(base_size = 18) +
-  theme(panel.grid = element_blank(),
-        legend.position = "none") +
-  xlab("") +
-  ylab("Current Ne") +
-  coord_flip()
+# plot_final_chip <- ggplot() +
+#   geom_bar(aes(x = breed_pretty, y = Geometric_mean, fill = breed_pretty),
+#            data = filter(gone_chip_colour, Generation == 1),
+#            stat = "identity") +
+#   geom_text(aes(x = breed_pretty, y = Geometric_mean + 20,
+#                 label = round(Geometric_mean)),
+#             data = filter(gone_chip_colour, Generation == 1)) +
+#   scale_fill_manual(values = gone_chip_colour$colour[!gone_chip_colour$breed %in% c("fjallnara", "bohuskulla")],
+#                     limits = gone_chip_colour$breed_pretty[!gone_chip_colour$breed %in% c("fjallnara", "bohuskulla")]) +
+#   theme_bw(base_size = 18) +
+#   theme(panel.grid = element_blank(),
+#         legend.position = "none") +
+#   xlab("") +
+#   ylab("Current Ne") +
+#   coord_flip()
 
 
 gone_final <- filter(gone, Generation == 1)
