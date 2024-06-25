@@ -29,6 +29,7 @@ for REP in {1..10}; do
   mkdir -p simulations/macleod/replicate$REP
 
   python python/simulate_macleod.py \
+    20 \
     simulations/macleod/replicate$REP/
     
 done
