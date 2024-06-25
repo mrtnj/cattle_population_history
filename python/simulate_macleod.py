@@ -7,7 +7,8 @@ import numpy as np
 import msprime
 
 
-out_path = sys.argv[1]
+n_ind = int(sys.argv[1])
+out_path = sys.argv[2]
 
 
 cattle_genome_table = pd.read_csv(
@@ -37,7 +38,7 @@ for change_ix in range(1, len(history)):
 for chr_ix in range(len(cattle_genome_table)):
   rec_rate = cattle_genome_table.genetic_length[chr_ix]/100/cattle_genome_table.length[chr_ix]
   ts = msprime.sim_ancestry(
-    samples = 20,
+    samples = n_ind,
     recombination_rate = rec_rate,
     sequence_length = cattle_genome_table.length[chr_ix],
     demography = demography,
