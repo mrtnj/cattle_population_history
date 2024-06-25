@@ -45,7 +45,8 @@ for FOLDER in simulations/gone_posterior/gone_fjall_chip/replicate*/ \
   simulations/gone_posterior/gone_holstein_seq/replicate*/ \
   simulations/gone_posterior/gone_jersey_seq/replicate*/ \
   simulations/gone_posterior/gone_rodkulla_chip/replicate*/ \
-  simulations/gone_posterior/gone_srb_chip/replicate*/; do
+  simulations/gone_posterior/gone_srb_chip/replicate*/ \
+  simulations/gone_posterior/macleod_posterior/replicate*/; do
   grep -E "##fileformat|##source|##FILTER" \
     $FOLDER/chr1.vcf > \
     $FOLDER/header1.txt

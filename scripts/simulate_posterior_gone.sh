@@ -24,3 +24,14 @@ for IX in {0..5}; do
     
 done
 
+
+
+for REP in {1..10}; do
+
+  mkdir -p simulations/macleod_posterior/replicate$REP
+
+  python python/simulate_macleod.py \
+      146 \
+      simulations/macleod_posterior/replicate$REP/
+      
+done

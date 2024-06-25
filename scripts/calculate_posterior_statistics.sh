@@ -76,3 +76,21 @@ for BREED in holstein fjall rodkulla srb; do
     --homozyg
     
 done
+
+
+
+## Macleod
+
+for REP in {1..10}; do
+  
+  plink \
+    --file simulations/macleod_posterior/replicate$REP/genotypes \
+    --cow \
+    --out model_checks/macleod_replicate$REP \
+    --freq \
+    --het \
+    --homozyg \
+    --homozyg-window-het 3 \
+    --homozyg-window-missing 10 
+      
+done
