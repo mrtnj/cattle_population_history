@@ -206,3 +206,18 @@ pdf("figures/gone_final_ne.pdf",
     height = 5, width = 10)
 print(plot_final)
 dev.off()
+
+
+
+
+## Generation of greatest change
+
+find_greatest_decline <- function(hist) {
+  change <- hist[1:(length(hist) - 1)] - hist[2:length(hist)]
+  which.min(change) 
+}
+
+summarise(group_by(gone, breed_pretty, run),
+          decline = find_greatest_decline(Geometric_mean),
+          mean_before = mean(Geometric_mean[Generation %in% 50:200]),
+          last = Geometric_mean[1])
