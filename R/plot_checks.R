@@ -38,7 +38,7 @@ freq_files_chip <- paste("model_checks/", c("fjall", "rodkulla", "holstein", "sr
                          "_chip.frq", sep = "")
 
 freq_labels_chip <- tibble(case = as.character(1:length(freq_files_chip)),
-                           label = c("Fjäll", "Rödkulla",
+                           label = c("Fjäll", "Red Polled",
                                      "Swedish Holstein-Friesian", "Swedish Red"))
 
 freq_chip <- pmap(list(filename = freq_files_chip,
@@ -117,16 +117,17 @@ plot_freq_chip <- ggplot() +
                 colour = label,
                 group = case),
             data = binned_maf_sim_label) +
-  geom_line(aes(x = bin_start,
+  geom_point(aes(x = bin_start,
                 y = proportion,
                 colour = label),
-            linetype = 2,
+            # linetype = 2,
             data = binned_maf_chip_labels) +
-  geom_line(aes(x = bin_start,
+  geom_point(aes(x = bin_start,
                 y = proportion,
                 colour = label),
-            linetype = 3,
-            linewidth = 1,
+            # linetype = 3,
+            # linewidth = 1,
+            shape = 2,
             data = binned_maf_swe_seq_label) +
   scale_colour_manual(values = colours_freq_chip$colour,
                       limits = colours_freq_chip$breed_pretty) +
@@ -219,7 +220,8 @@ binned_maf_macleod_labels <- inner_join(binned_maf_macleod, freq_labels_macleod)
 
 
 colours_freq_seq <- filter(colours, 
-                           breed_pretty %in% binned_maf_seq_sim_labels$label)
+                           breed_pretty %in% 
+                             c(binned_maf_seq_sim_labels$label, "Macleod et al. (2013)"))
 
 
 bin_labels0.05 <- paste("[", seq(from = 0, to = 0.45, by = 0.05), ", ",
@@ -236,15 +238,13 @@ plot_freq_seq <- ggplot() +
                 y = proportion,
                 colour = label,
                 group = case),
-            linetype = 2,
-            data = binned_maf_seq_labels) +
-  geom_line(aes(x = bin_start,
+            data = binned_maf_macleod_labels) +
+  geom_point(aes(x = bin_start,
                 y = proportion,
                 colour = label,
                 group = case),
-            linetype = 3,
-            linewidth = 1,
-            data = binned_maf_macleod_labels) +
+            # linetype = 2,
+            data = binned_maf_seq_labels) +
   scale_colour_manual(values = colours_freq_seq$colour,
                       limits = colours_freq_seq$breed_pretty) +
   scale_x_continuous(labels = bin_labels0.05,
