@@ -57,7 +57,7 @@ dev.off()
 
 
 gone_chip10 <- filter(gone,
-                      ! breed %in% c("fjallnara", "vane", "bohuskulla") &
+                      ! breed %in% c("fjallnara", "vaneko", "bohuskulla") &
                         run == "chip")
 
 

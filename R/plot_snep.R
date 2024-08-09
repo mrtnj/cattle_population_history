@@ -32,7 +32,8 @@ snep <- inner_join(bind_rows(snep_chip, snep_seq),
                    breed_colours)
 
 plot_snep <- qplot(x = GenAgo, y = Ne,
-                   colour = breed_pretty, data = snep, geom = "line") +
+                   colour = breed_pretty,
+                   data = filter(snep, GenAgo <= 200), geom = "line") +
   scale_colour_manual(
     values = snep$colour,
     limits = snep$breed_pretty
@@ -40,7 +41,8 @@ plot_snep <- qplot(x = GenAgo, y = Ne,
   xlab("Generations ago") +
   ylab("Effective poupulation size") +
   theme_bw() +
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank(),
+        legend.title = element_blank())
 
 
 pdf("figures/snep_chip.pdf",
@@ -67,7 +69,7 @@ plot_final <- ggplot() +
             data = snep_final) +
   scale_fill_manual(values = snep_final$colour,
                     limits = snep_final$breed_pretty) +
-  theme_bw(base_size = 18) +
+  theme_bw() +
   theme(panel.grid = element_blank(),
         legend.position = "none") +
   xlab("") +
@@ -81,3 +83,14 @@ pdf("figures/snep_final_ne.pdf",
 print(plot_final)
 dev.off()
 
+
+
+
+plot_combined <- plot_snep | plot_final
+
+
+pdf("figures/snep_combined.pdf",
+    width = 10,
+    height = 3.5)
+print(plot_combined)
+dev.off()

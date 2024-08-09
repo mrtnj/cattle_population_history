@@ -266,7 +266,7 @@ het_files_chip <- paste("model_checks/", c("fjall", "rodkulla", "holstein", "srb
                         "_chip.het", sep = "")
 
 het_labels_chip <- tibble(case = as.character(1:length(het_files_chip)),
-                          label = c("Fjäll", "Rödkulla", "Swedish Holstein-Friesian", "Swedish Red"))
+                          label = c("Fjäll", "Red Polled", "Swedish Holstein-Friesian", "Swedish Red"))
 
 het_chip <- pmap_dfr(list(filename = het_files_chip,
                           label = het_labels_chip$label),
@@ -286,7 +286,7 @@ het_files_sim_chip <- paste(rep(
 )
 
 het_labels_sim <- tibble(case = as.character(1:length(het_files_sim_chip)),
-                         label = rep(c("Fjäll", "Rödkulla",
+                         label = rep(c("Fjäll", "Red Polled",
                                        "Swedish Holstein-Friesian", "Swedish Red"),
                                      each = 10))
 
@@ -305,7 +305,7 @@ het_files_swe_seq <- paste("model_checks/", c("fjall", "rodkulla"),
                            "_seq.het", sep = "")
 
 het_labels_swe_seq <- tibble(case = as.character(1:length(het_files_swe_seq)),
-                             label = c("Fjäll", "Rödkulla"))
+                             label = c("Fjäll", "Red Polled"))
 
 het_swe_seq <- pmap_dfr(list(filename = het_files_swe_seq,
                              label = het_labels_swe_seq$label),
@@ -357,7 +357,7 @@ het_files_seq <- paste("model_checks/", c("holstein", "jersey"),
                         "_seq.het", sep = "")
 
 het_labels_seq <- tibble(case = as.character(1:length(het_files_seq)),
-                          label = c("Holstein", "Jersey"))
+                          label = c("Holstein 1000 Bulls", "Jersey 1000 Bulls"))
 
 het_seq <- pmap_dfr(list(filename = het_files_seq,
                          label = het_labels_seq$label),
@@ -377,7 +377,7 @@ het_files_sim_seq <- paste(rep(
 )
 
 het_labels_sim_seq <- tibble(case = as.character(1:length(het_files_sim_seq)),
-                             label = rep(c("Holstein", "Jersey"),
+                             label = rep(c("Holstein 1000 Bulls", "Jersey 1000 Bulls"),
                                          each = 10))
 
 het_seq_simulated <- pmap(
@@ -447,7 +447,7 @@ roh_files_chip <- paste("model_checks/", c("fjall", "rodkulla", "holstein", "srb
                         "_chip.hom.indiv", sep = "")
 
 roh_chip <- pmap_dfr(list(filename = roh_files_chip,
-                          label = c("Fjäll", "Rödkulla", "Swedish Holstein-Friesian", "Swedish Red")),
+                          label = c("Fjäll", "Red Polled", "Swedish Holstein-Friesian", "Swedish Red")),
                      read_freq)
 
 
@@ -469,7 +469,7 @@ roh_files_sim_chip <- paste(rep(
 )
 
 roh_labels_sim <- tibble(case = as.character(1:length(roh_files_sim_chip)),
-                         label = rep(c("Fjäll", "Rödkulla",
+                         label = rep(c("Fjäll", "Red Polled",
                                        "Swedish Holstein-Friesian", "Swedish Red"),
                                      each = 10))
 
@@ -491,7 +491,7 @@ roh_files_swe_seq <- paste("model_checks/", c("fjall", "rodkulla"),
                            "_seq.hom.indiv", sep = "")
 
 roh_labels_swe_seq <- tibble(case = as.character(1:length(roh_files_swe_seq)),
-                             label = c("Fjäll", "Rödkulla"))
+                             label = c("Fjäll", "Red Polled"))
 
 roh_swe_seq <- pmap_dfr(list(filename = roh_files_swe_seq,
                              label = roh_labels_swe_seq$label),
@@ -545,7 +545,7 @@ roh_files_seq <- paste("model_checks/", c("holstein", "jersey"),
                        "_seq.hom.indiv", sep = "")
 
 roh_labels_seq <- tibble(case = as.character(1:length(roh_files_seq)),
-                         label = c("Holstein", "Jersey"))
+                         label = c("Holstein 1000 Bulls", "Jersey 1000 Bulls"))
 
 roh_seq <- pmap_dfr(list(filename = roh_files_seq,
                          label = roh_labels_seq$label),
@@ -567,7 +567,7 @@ roh_files_sim_seq <- paste(rep(
 )
 
 roh_labels_sim_seq <- tibble(case = as.character(1:length(roh_files_sim_seq)),
-                             label = rep(c("Holstein", "Jersey"),
+                             label = rep(c("Holstein 1000 Bulls", "Jersey 1000 Bulls"),
                                          each = 10))
 
 roh_seq_simulated <- pmap(
