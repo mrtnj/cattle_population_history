@@ -14,5 +14,5 @@ for POP in snp_chip/bohuskulla snp_chip/fjall snp_chip/fjallnara snp_chip/holste
     -out snep/$POP \
     -samplesize 2 \
     -haldane > snep/${POP}_out.txt
-  ##-threads 8 \
+  
 done
