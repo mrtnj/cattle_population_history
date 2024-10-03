@@ -11,10 +11,10 @@ mkdir -p snep/simulations_macleod
 for REP in {1..10}; do
 
   $SNEP_PATH/SNeP_111 \
-    -ped simulations_decline/replicate$REP/genotypes100k \
+    -ped simulations/decline/replicate$REP/genotypes100k.ped \
     -out snep/simulations_decline/replicate$REP \
     -samplesize 2 \
-    -haldane > snep/decline/${REP}_out.txt
+    -haldane > snep/simulations_decline/replicate${REP}_out.txt
 
 done
 
@@ -22,10 +22,10 @@ done
 for REP in {1..10}; do
 
   $SNEP_PATH/SNeP_111 \
-    -ped simulations_recovery/replicate$REP/genotypes100k \
+    -ped simulations/recovery/replicate$REP/genotypes100k.ped \
     -out snep/simulations_recovery/replicate$REP \
     -samplesize 2 \
-    -haldane > snep/recovery/${REP}_out.txt
+    -haldane > snep/simulations_recovery/replicate${REP}_out.txt
 
 done
 
@@ -33,9 +33,9 @@ done
 for REP in {1..10}; do
 
   $SNEP_PATH/SNeP_111 \
-    -ped simulations_macleod/replicate$REP/genotypes100k \
+    -ped simulations/macleod/replicate$REP/genotypes100k.ped \
     -out snep/simulations_macleod/replicate$REP \
     -samplesize 2 \
-    -haldane > snep/macleod/${REP}_out.txt
+    -haldane > snep/simulations_macleod/replicate${REP}_out.txt
 
 done
