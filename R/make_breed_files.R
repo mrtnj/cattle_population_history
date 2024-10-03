@@ -16,6 +16,7 @@ metadata$breed_sanitised <- tolower(gsub(metadata$breed_sanitised,
                                          pattern = "ö",
                                          replacement = "o"))
 
+
 ## Remove breed with only two samples
 metadata <- filter(metadata, breed_sanitised != "ringamalako")
 
