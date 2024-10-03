@@ -221,3 +221,17 @@ summarise(group_by(gone, breed_pretty, run),
           decline = find_greatest_decline(Geometric_mean),
           mean_before = mean(Geometric_mean[Generation %in% 50:200]),
           last = Geometric_mean[1])
+
+
+## Supplementary data of all histories
+
+supp_data <- filter(gone, Generation <= 200)[, c("breed_pretty", "Generation", "Geometric_mean")]
+colnames(supp_data) <- c("Breed", "Generation", "Ne")
+
+
+dir.create("tables")
+
+write.csv(supp_data,
+          file = "tables/supplementary_data_histories.csv",
+          quote = FALSE,
+          row.names = FALSE)
