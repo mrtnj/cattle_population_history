@@ -73,7 +73,7 @@ plot_chip_n10 <- qplot(x = Generation, y = Geometric_mean,
   theme(panel.grid = element_blank(),
         legend.position = "bottom",
         legend.title = element_blank()) +
-  coord_cartesian(xlim = c(0, 200)) +
+  coord_cartesian(xlim = c(0, 50), ylim = c(0, 20000)) +
   ylab("Effective population size") +
   xlab("Generations ago")
 
