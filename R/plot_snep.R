@@ -42,7 +42,8 @@ plot_snep <- qplot(x = GenAgo, y = Ne,
   ylab("Effective poupulation size") +
   theme_bw() +
   theme(panel.grid = element_blank(),
-        legend.title = element_blank())
+        legend.title = element_blank(),
+        legend.position = "bottom")
 
 
 pdf("figures/snep_chip.pdf",
@@ -71,7 +72,8 @@ plot_final <- ggplot() +
                     limits = snep_final$breed_pretty) +
   theme_bw() +
   theme(panel.grid = element_blank(),
-        legend.position = "none") +
+        legend.position = "none",
+        axis.text.y = element_text(size = 6)) +
   xlab("") +
   ylab("Current Ne") +
   coord_flip()
@@ -84,13 +86,16 @@ print(plot_final)
 dev.off()
 
 
+## Supplementary SNeP figure
+
+plot_simulated_snep <- readRDS("figures/plot_snep_simulated.Rds")
 
 
-plot_combined <- plot_snep | plot_final
+plot_combined <- plot_simulated_snep + plot_snep + plot_final +
+  plot_annotation(tag_level = "A") + plot_layout(ncol = 1)
 
 
-pdf("figures/snep_combined.pdf",
-    width = 10,
-    height = 3.5)
+pdf("figures/snep_combined.pdf", height = 10)
 print(plot_combined)
 dev.off()
+
