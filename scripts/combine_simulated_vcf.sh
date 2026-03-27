@@ -4,8 +4,13 @@
 
 
 for FOLDER in simulations/decline/replicate*/ \
+  simulations/two_declines/replicate*/ \
   simulations/recovery/replicate*/ \
   simulations/macleod/replicate*/; do
+  
+  
+  for FOLDER in simulations/two_declines/replicate*/ ; do
+  
   grep -E "##fileformat|##source|##FILTER" \
     $FOLDER/chr1.vcf > \
     $FOLDER/header1.txt
@@ -47,6 +52,9 @@ for FOLDER in simulations/gone_posterior/gone_fjall_chip/replicate*/ \
   simulations/gone_posterior/gone_rodkulla_chip/replicate*/ \
   simulations/gone_posterior/gone_srb_chip/replicate*/ \
   simulations/macleod_posterior/replicate*/; do
+  
+# for FOLDER in simulations/gone_posterior/gone_holstein_seq/replicate*/ \
+#   simulations/macleod_posterior/replicate*/; do
   grep -E "##fileformat|##source|##FILTER" \
     $FOLDER/chr1.vcf > \
     $FOLDER/header1.txt

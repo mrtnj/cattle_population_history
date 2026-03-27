@@ -16,6 +16,16 @@ done
 
 for REP in {1..10}; do
 
+  mkdir -p simulations/two_declines/replicate$REP
+
+  python python/simulate_two_declines.py \
+    simulations/two_declines/replicate$REP/
+    
+done
+
+
+for REP in {1..10}; do
+
   mkdir -p simulations/recovery/replicate$REP
 
   python python/simulate_recovery.py \
