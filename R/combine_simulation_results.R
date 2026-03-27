@@ -15,12 +15,16 @@ gone_decline <- read_gone_results("gone/simulations_decline/replicate",
                                   1:10,
                                   "decline")
 
+gone_two_declines <- read_gone_results("gone/simulations_two_declines/replicate",
+                                  1:10,
+                                  "two declines")
+
 gone_recovery <- read_gone_results("gone/simulations_recovery/replicate",
                                    1:10,
                                    "recovery")
 
 
-gone <- bind_rows(gone_macleod, gone_decline, gone_recovery)
+gone <- bind_rows(gone_macleod, gone_decline, gone_two_declines, gone_recovery)
 colnames(gone)[1] <- "replicate"
 
 write.table(gone,
