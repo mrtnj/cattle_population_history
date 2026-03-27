@@ -202,7 +202,7 @@ freq_files_macleod <- paste(rep(
 )
 
 freq_labels_macleod <- tibble(case = as.character(1:10),
-                              label = "Macleod et al. (2013)")
+                              label = "Holstein (MacLeod et al.)")
 
 freq_macleod <- pmap(
   list(filename = freq_files_macleod,
@@ -222,6 +222,7 @@ binned_maf_macleod_labels <- inner_join(binned_maf_macleod, freq_labels_macleod)
 colours_freq_seq <- filter(colours, 
                            breed_pretty %in% 
                              c(binned_maf_seq_sim_labels$label, "Macleod et al. (2013)"))
+colours_freq_seq$breed_pretty[colours_freq_seq$breed == "macleod"] <- "Holstein (MacLeod et al.)"
 
 
 bin_labels0.05 <- paste("[", seq(from = 0, to = 0.45, by = 0.05), ", ",
