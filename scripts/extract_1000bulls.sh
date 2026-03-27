@@ -42,7 +42,19 @@ plink \
   --snps-only \
   --vcf vcf/holstein_filtered_excluded.vcf.gz \
   --recode \
-  --maf 0.000001 \
+  --mac 1 \
+  --out plink/sequence/holstein_unfiltered
+  
+  
+plink \
+  --cow \
+  --chr 1-29 \
+  --biallelic-only strict \
+  --snps-only \
+  --vcf vcf/holstein_filtered_excluded.vcf.gz \
+  --remove plink/1000bulls_to_exclude.txt \
+  --recode \
+  --mac 1 \
   --out plink/sequence/holstein
 
 
@@ -53,5 +65,5 @@ plink \
   --snps-only \
   --vcf vcf/jersey_filtered_excluded.vcf.gz \
   --recode \
-  --maf 0.000001 \
+  --mac 1 \
   --out plink/sequence/jersey
