@@ -20,6 +20,12 @@ metadata$case[grepl("rodkulla", metadata$file)] <- "Red Polled"
 metadata$case[grepl("srb", metadata$file)] <- "Swedish Red"
 
 
+history_summaries <- read_csv("tables/decline_summaries.csv")
+
+history_summaries <- filter(history_summaries, breed_pretty %in% metadata$case)
+history_summaries$case <- history_summaries$breed_pretty
+
+
 pi <- map_dfr(files, read_csv, .id = "run")
 
 pi_metadata <- inner_join(pi, metadata)
@@ -28,8 +34,11 @@ pi_metadata <- inner_join(pi, metadata)
 plot_pi <- qplot(x = gen - 200, y = pi,
                  alpha = I(1/5),
                  data = pi_metadata, geom = "line", group = run) +
-  facet_wrap(~ case, scales = "free_y") +
   geom_vline(xintercept = 0, linetype = 2) +
+  geom_vline(aes(xintercept = decline),
+             data = history_summaries,
+             linetype = 2, colour = "red") +
+  facet_wrap(~ case, scales = "free_y") +
   theme_bw() +
   theme(panel.grid = element_blank(),
         strip.background = element_blank()) +
