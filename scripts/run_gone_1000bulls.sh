@@ -1,5 +1,5 @@
 
-## Run GONE over Swedish cattle breeds
+## Run GONE over international cattle breeds
 
 
 for BREED in jersey holstein; do
