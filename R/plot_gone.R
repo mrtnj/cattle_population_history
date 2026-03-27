@@ -39,8 +39,37 @@ plot_all + coord_cartesian(ylim = c(0, 50000))
 plot_all + coord_cartesian(ylim = c(0, 20000))
 
 
-plot_breed <- qplot(x = Generation, y = Geometric_mean,
-                    data = gone, geom = "line") + xlim(0, 200) +
+jackknife_snp_chip <- read_tsv("outputs/gone_jackknife_snp_chip.txt")
+
+intervals_snp_chip <- summarise(group_by(jackknife_snp_chip, breed, Generation),
+                                lower = quantile(Geometric_mean, 0),
+                                upper = quantile(Geometric_mean, 1))
+intervals_snp_chip$run <- "chip"
+
+intervals_snp_chip <- inner_join(intervals_snp_chip, breed_colours)
+
+
+
+jackknife_seq <- read_tsv("outputs/gone_jackknife_1000bulls.txt")
+
+intervals_seq <- summarise(group_by(jackknife_seq, breed, Generation),
+                           lower = quantile(Geometric_mean, 0),
+                           upper = quantile(Geometric_mean, 1))
+intervals_seq$run <- "seq"
+intervals_seq$breed <- sub(intervals_seq$breed, pattern = "seq_", replacement = "")
+
+intervals_seq <- inner_join(intervals_seq, breed_colours)
+
+
+intervals <- rbind(intervals_snp_chip, intervals_seq)
+
+plot_breed <- ggplot() +
+  geom_line(aes(x = Generation, y = Geometric_mean),
+            data = gone) + xlim(0, 200) +
+  geom_ribbon(aes(x = Generation, ymin = lower, ymax = upper,
+                  group = paste(breed, run)),
+              alpha = 0.1,
+              data = intervals) +
   facet_wrap(~ breed_pretty, scale = "free_y") +
   theme_bw() +
   theme(panel.grid = element_blank(),
@@ -179,13 +208,19 @@ gone_final$breed_pretty <- factor(
                                          decreasing = TRUE)]
 )
 
+largeN <- c("holstein", "jersey", "fjall", "srb")
+
+gone_final$N_indicator <- ""
+gone_final$N_indicator[gone_final$breed %in% largeN] <- "*"
+
+
 plot_final <- ggplot() +
   geom_bar(aes(x = breed_pretty,
                y = Geometric_mean, fill = breed_pretty),
            data = gone_final,
            stat = "identity") +
   geom_text(aes(x = breed_pretty, y = Geometric_mean + 20,
-                label = round(Geometric_mean)),
+                label = paste0(round(Geometric_mean), N_indicator)),
             data = gone_final) +
   scale_fill_manual(values = gone$colour,
                     limits = gone$breed_pretty) +
@@ -217,10 +252,15 @@ find_greatest_decline <- function(hist) {
   which.min(change) 
 }
 
-summarise(group_by(gone, breed_pretty, run),
-          decline = find_greatest_decline(Geometric_mean),
-          mean_before = mean(Geometric_mean[Generation %in% 50:200]),
-          last = Geometric_mean[1])
+decline_summaries <- summarise(group_by(gone, breed_pretty, run),
+                               decline = find_greatest_decline(Geometric_mean),
+                               mean_before = mean(Geometric_mean[Generation %in% 50:200]),
+                               last = Geometric_mean[1])
+
+write.csv(decline_summaries[, c(1, 3, 4)],
+          file = "tables/decline_summaries.csv",
+          quote = FALSE,
+          row.names = FALSE)
 
 
 ## Supplementary data of all histories
@@ -235,3 +275,7 @@ write.csv(supp_data,
           file = "tables/supplementary_data_histories.csv",
           quote = FALSE,
           row.names = FALSE)
+
+
+
+
